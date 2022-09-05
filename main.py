@@ -56,4 +56,9 @@ for post in posts:
 # AGORA TRANSFORMANDO ESSES DADOS PARA JSON
 #empurrou todos os dados do all_posts para um json_file
 with open('posts.json', 'w') as json_file: 
-    json.dump(all_posts, json_file)
+    json.dump(all_posts, json_file, indent=3, ensure_ascii=False) #o indent=3 serve para organizar melhor o arquivo json
+
+
+#       AGORA PARA TRATAR ALGUNS ERROS DO JSON, COMO DIGITOS TROCADOS
+#USA-SE O ENSURE_ASCI=False NO CODIGO DO JSON.DUMP
+
