@@ -1,5 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
+import json
+
+
 #REALIZANDO WEB SCRAPING NO SITE DA ROCKETSEAT
 res = requests.get("https://blog.rocketseat.com.br/?")
 res.encoding = "utf-8"
@@ -28,7 +31,7 @@ for post in posts:
 
 
     add_time_info = info.find(class_='m-article-card__timestamp')
-    time_info_list = info.find_all('span')
+    time_info_list = info.find_all('span') #como no arquivo só tem 3 json fica mais facil. além de que colocou os 3 em uma lista indexavel
     date = time_info_list[0].text
     read_time = time_info_list[2].text
 
@@ -48,4 +51,9 @@ for post in posts:
         'img': link_image,
         })
 
-print(all_posts)
+# print(all_posts)
+
+# AGORA TRANSFORMANDO ESSES DADOS PARA JSON
+#empurrou todos os dados do all_posts para um json_file
+with open('posts.json', 'w') as json_file: 
+    json.dump(all_posts, json_file)
